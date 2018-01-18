@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-import mechanize
 import requests
 import re
 import sys
@@ -96,7 +95,12 @@ def get_picture_name_from_url(url) :
 def request_picture_and_save(picture_url_list, directory) :
     #headers  = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36"}
     for url in picture_url_list :
-        response = requests.get(url)
+        print "Downloading: " + url
+        try :
+            response = requests.get(url)
+        except :
+            print "Failed to download image: " + url
+
         if response.status_code == 200 :
             f = open(os.path.join(directory, get_picture_name_from_url(url)), "wb")
             f.write(response.content)
