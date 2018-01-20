@@ -12,7 +12,7 @@ from datetime import datetime
 ptt_url = "https://www.ptt.cc/bbs/Beauty/index.html"
 ptt_host = "https://www.ptt.cc"
 ptt_from = ""
-save_directory = "tmp"
+save_directory = ""
 start_time = ""
 end_time = ""
 like_restriction = 7
@@ -192,6 +192,8 @@ def init_arguments(args) :
 
     if args['save_directory'] != None :
         save_directory = args['save_directory'][0]
+    else :
+        save_directory = datetime.now().strftime("%Y/%m%d")
         
     if args['start_day'] != None :
         start_time = args['start_day'][0]
