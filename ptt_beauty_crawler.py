@@ -175,7 +175,7 @@ def get_prev_page(dom) :
 
 def parse_arguments() :
     parser = argparse.ArgumentParser(description='Download web pages and images from ptt.')
-    parser.add_argument("-d", "--save_directory", nargs = 1, help = "Directory you want to save data(default: ./tmp)")
+    parser.add_argument("-d", "--save_directory", nargs = 1, help = "Directory you want to save data")
     parser.add_argument("-u", "--url", nargs = 1, help = "Url which contents articles")
     parser.add_argument("-s", "--start_day", nargs = 1, help = "Article posted between start_day and end_day would be downloaded")
     parser.add_argument("-e", "--end_day", nargs = 1, help = "Article posted between start_day and end_day would be downloaded")
