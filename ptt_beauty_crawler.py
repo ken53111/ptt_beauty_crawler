@@ -15,7 +15,7 @@ ptt_from = ""
 save_directory = ""
 start_time = ""
 end_time = ""
-like_restriction = 7
+like_restriction = 0
 
 CHUNK_SIZE = 32768
 page_count = 10
