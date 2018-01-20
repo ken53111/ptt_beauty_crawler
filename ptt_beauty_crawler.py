@@ -136,6 +136,9 @@ def save_article(session, a, time_range_dictionary) :
             directory = create_directory(topic)
             save_html(topic, html, directory)
             save_picture(html, directory)
+            return "done"
+        else :
+            return "expired"
     
 def get_article_time(html) :
     soup = BeautifulSoup(html, "html5lib")
@@ -223,6 +226,10 @@ def main() :
     dom = get_article_list(session)
     
     while traversed_page < page_count :
+        list_sep_index = dom.find('<div class="r-list-sep"></div>')
+        if list_sep_index != -1 :
+            dom = dom[:list_sep_index]
+            
         articles = get_articles(dom)
         
         time_range_dictionary = time_range(start_time, end_time)
@@ -232,7 +239,10 @@ def main() :
                 print a['topic'] + ": " + a['link']
             except :
                 print "Failed to print topic"
-            save_article(session, a, time_range_dictionary)
+            
+            if save_article(session, a, time_range_dictionary) == "expired" :
+                print "done."
+                sys.exit()
         
         dom = session.get(get_prev_page(dom)).text
         traversed_page += 1       
